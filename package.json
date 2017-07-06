@@ -4,17 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "json:server": "json-server --watch db.json"
   },
   "author": "Kevin C Chen",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.16.2",
     "express": "^4.15.3",
     "express-graphql": "^0.6.6",
     "graphql": "^0.10.3",
+    "json-server": "^0.11.0",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "eslint": "^4.1.1"
+    "eslint": "^4.1.1",
+    "nodemon": "^1.11.0"
   }
 }

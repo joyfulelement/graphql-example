@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kevin C Chen",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.15.3",
     "express-graphql": "^0.6.6",

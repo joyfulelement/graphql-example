@@ -15,7 +15,7 @@ const {
 
 const CompanyType = new GraphQLObjectType({
     name: 'Company',
-    fields: () => ({ //JS closure ( to resolve circular reference - UserType) - defined first but does not get executed until after the entire file gets executed
+    fields: () => ({ //Arrow function: JS closure ( to resolve circular reference - UserType) - defined first but does not get executed until after the entire file gets executed
         id: {type: GraphQLString},
         name: {type: GraphQLString},
         description: {type: GraphQLString},
@@ -73,7 +73,7 @@ const RootQuery = new GraphQLObjectType({
 const mutation = new GraphQLObjectType({
     name: 'Mutation',
     fields:{
-        addUser:{
+        addUser:{ //describe the purpose of what the mutation operation is going to be
             type: UserType,
             args: {
                 firstName:{type: new GraphQLNonNull(GraphQLString)},
@@ -84,7 +84,30 @@ const mutation = new GraphQLObjectType({
                 return axios.post('http://localhost:3000/users', {firstName, age})
                     .then(res => res.data)
             }
-        }
+        },
+        deleteUser:{
+            type: UserType,
+            args: {
+                id:{type: new GraphQLNonNull(GraphQLString)},
+            },
+            resolve(parentValue, {id}){
+                return axios.delete(`http://localhost:3000/users/${id}`)
+                    .then(res => res.data)
+            }
+        },
+        editUser:{
+            type: UserType,
+            args: {
+                id:{type: new GraphQLNonNull(GraphQLString)},
+                firstName:{type: GraphQLString},
+                age: {type: GraphQLInt},
+                companyId: {type: GraphQLString}
+            },
+            resolve(parentValue, args){
+                return axios.patch(`http://localhost:3000/users/${args.id}`, args)
+                    .then(res => res.data)
+            }
+        },
     }
 })
 

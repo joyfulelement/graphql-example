@@ -1,4 +1,4 @@
-~/**
+/**
  * Express server
  * Forwards the request asking for GraphQl
  * 

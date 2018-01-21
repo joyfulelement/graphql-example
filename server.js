@@ -1,7 +1,8 @@
-/**
+~/**
  * Express server
- *
- * Created by kevinc that forwards the request asking for GraphQl
+ * Forwards the request asking for GraphQl
+ * 
+ * Created by kevinc 
  *
  */
 const express = require('express')

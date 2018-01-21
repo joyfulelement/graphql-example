@@ -46,13 +46,14 @@ const UserType = new GraphQLObjectType({
     })
 })
 
+// Allow GraphQL to jump and land on very specific node of our data
 const RootQuery = new GraphQLObjectType({
-    name: 'Ro otQueryType',
+    name: 'RootQueryType',
     fields:{
         user:{
             type: UserType,
             args: {id:{type: GraphQLString}},
-            resolve(pcarentValue, args) {
+            resolve(parentValue, args) {
                 //Go to any data store and find tha actual data we are looking for
                 return axios.get(`http://localhost:3000/users/${args.id}`)
                     .then(resp => resp.data) //to access the data property return from axios library
